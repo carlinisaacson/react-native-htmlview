@@ -1,15 +1,13 @@
-var React = require('react-native')
-var {
-  Image,
-  Dimensions,
-} = React
+import React from 'react'
+import { Image, Dimensions } from 'react-native'
 
-var {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
-var baseStyle = {
+const baseStyle = {
   backgroundColor: 'transparent',
 }
-var ResizableImage = React.createClass({
+
+let ResizableImage = React.createClass({
   getInitialState: function() {
     return {
       // set width 1 is for preventing the warning
@@ -28,14 +26,14 @@ var ResizableImage = React.createClass({
     })
   },
   render: function() {
-    var finalSize = {}
+    let finalSize = {}
     if (this.state.width > width) {
       finalSize.width = width
-      var ratio = width / this.state.width
+      let ratio = width / this.state.width
       finalSize.height = this.state.height * ratio
     }
-    var style = Object.assign(baseStyle, this.props.style, this.state, finalSize)
-    var source = {}
+    let style = Object.assign(baseStyle, this.props.style, this.state, finalSize)
+    let source = {}
     if (!finalSize.width || !finalSize.height) {
       source = Object.assign(source, this.props.source, this.state)
     } else {
